@@ -3,7 +3,6 @@ using EMS.Application.Interfaces;
 using EMS.Domain.Models;
 using EMS.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Dynamic.Core;
 
 namespace EMS.Infrastructure.Services
 {
@@ -45,7 +44,7 @@ namespace EMS.Infrastructure.Services
                 // Get total count before paging
                 var totalCount = await query.CountAsync();
 
-                // Apply sorting with special handling for decimal fields
+                // Apply sorting with explicit LINQ methods
                 query = ApplySorting(query, sortBy, sortDir);
 
                 // Apply paging
@@ -73,7 +72,7 @@ namespace EMS.Infrastructure.Services
 
             var sortDirection = sortDir?.ToLower() == "desc" ? "descending" : "ascending";
             
-            // Handle different field types to avoid SQLite issues
+            // Handle different field types with explicit LINQ methods
             switch (sortBy.ToLower())
             {
                 case "salary":
@@ -99,45 +98,37 @@ namespace EMS.Infrastructure.Services
                     }
                 
                 case "firstname":
-                case "lastname":
-                case "email":
-                    // Handle string fields with dynamic sorting
-                    try
+                    if (sortDirection == "ascending")
                     {
-                        return query.OrderBy($"{sortBy} {sortDirection}");
+                        return query.OrderBy(e => e.FirstName);
                     }
-                    catch
+                    else
                     {
-                        // Fallback to explicit sorting if dynamic sorting fails
-                        return ApplyExplicitStringSorting(query, sortBy, sortDirection);
+                        return query.OrderByDescending(e => e.FirstName);
+                    }
+                
+                case "lastname":
+                    if (sortDirection == "ascending")
+                    {
+                        return query.OrderBy(e => e.LastName);
+                    }
+                    else
+                    {
+                        return query.OrderByDescending(e => e.LastName);
+                    }
+                
+                case "email":
+                    if (sortDirection == "ascending")
+                    {
+                        return query.OrderBy(e => e.Email);
+                    }
+                    else
+                    {
+                        return query.OrderByDescending(e => e.Email);
                     }
                 
                 default:
                     // Default sorting
-                    return query.OrderBy(e => e.LastName).ThenBy(e => e.FirstName);
-            }
-        }
-
-        private IQueryable<Employee> ApplyExplicitStringSorting(IQueryable<Employee> query, string sortBy, string sortDirection)
-        {
-            switch (sortBy.ToLower())
-            {
-                case "firstname":
-                    return sortDirection == "ascending" 
-                        ? query.OrderBy(e => e.FirstName)
-                        : query.OrderByDescending(e => e.FirstName);
-                
-                case "lastname":
-                    return sortDirection == "ascending" 
-                        ? query.OrderBy(e => e.LastName)
-                        : query.OrderByDescending(e => e.LastName);
-                
-                case "email":
-                    return sortDirection == "ascending" 
-                        ? query.OrderBy(e => e.Email)
-                        : query.OrderByDescending(e => e.Email);
-                
-                default:
                     return query.OrderBy(e => e.LastName).ThenBy(e => e.FirstName);
             }
         }

@@ -55,12 +55,14 @@
 
                     <form asp-action="Delete" class="mt-4">
                         <input type="hidden" asp-for="Id" />
-                        <button type="submit" class="btn btn-danger" @(Model.Employees.Any() ? "disabled" : "")>
-                            <i class="fas fa-trash"></i> Delete
-                        </button>
-                        <a asp-action="Index" class="btn btn-secondary">
-                            <i class="fas fa-times"></i> Cancel
-                        </a>
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-danger" @(Model.Employees.Any() ? "disabled" : "")>
+                                <i class="fas fa-trash"></i> Delete Department
+                            </button>
+                            <a asp-action="Index" class="btn btn-secondary">
+                                <i class="fas fa-times"></i> Cancel
+                            </a>
+                        </div>
                     </form>
                 </div>
             </div>

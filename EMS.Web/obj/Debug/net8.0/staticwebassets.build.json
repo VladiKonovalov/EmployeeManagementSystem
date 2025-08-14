@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "zTFnCs+pctqL6lRpkKL5Db5bVLFPeUT4zZo/lqDC/DU=",
+  "Hash": "Mojx8oRC+oqygI7avSQfP0svAU1eJt6ELR+1YE3oP3Q=",
   "Source": "EMS.Web",
   "BasePath": "_content/EMS.Web",
   "Mode": "Default",
@@ -73,8 +73,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "32endcp4wp",
-      "Integrity": "FewczqyhswnSa0x88sHkw2t4LZQxnx5uwe585hOWSC4=",
+      "Fingerprint": "98q4q4p5n9",
+      "Integrity": "N+isHyPnvEagy23r5oT3PwDtW1geSfYtfqX+nhrJ2jQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -1384,7 +1384,7 @@
   ],
   "Endpoints": [
     {
-      "Route": "css/site.32endcp4wp.css",
+      "Route": "css/site.98q4q4p5n9.css",
       "AssetFile": "C:\\Users\\erose\\myprojects\\EmployeeManagementSystem\\EMS.Web\\wwwroot\\css\\site.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1394,7 +1394,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "13986"
+          "Value": "13742"
         },
         {
           "Name": "Content-Type",
@@ -1402,11 +1402,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"FewczqyhswnSa0x88sHkw2t4LZQxnx5uwe585hOWSC4=\""
+          "Value": "\"N+isHyPnvEagy23r5oT3PwDtW1geSfYtfqX+nhrJ2jQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 14 Aug 2025 09:46:47 GMT"
+          "Value": "Thu, 14 Aug 2025 13:13:13 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1416,7 +1416,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "32endcp4wp"
+          "Value": "98q4q4p5n9"
         },
         {
           "Name": "label",
@@ -1424,7 +1424,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-FewczqyhswnSa0x88sHkw2t4LZQxnx5uwe585hOWSC4="
+          "Value": "sha256-N+isHyPnvEagy23r5oT3PwDtW1geSfYtfqX+nhrJ2jQ="
         }
       ]
     },
@@ -1439,7 +1439,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "13986"
+          "Value": "13742"
         },
         {
           "Name": "Content-Type",
@@ -1447,11 +1447,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"FewczqyhswnSa0x88sHkw2t4LZQxnx5uwe585hOWSC4=\""
+          "Value": "\"N+isHyPnvEagy23r5oT3PwDtW1geSfYtfqX+nhrJ2jQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 14 Aug 2025 09:46:47 GMT"
+          "Value": "Thu, 14 Aug 2025 13:13:13 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1461,7 +1461,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-FewczqyhswnSa0x88sHkw2t4LZQxnx5uwe585hOWSC4="
+          "Value": "sha256-N+isHyPnvEagy23r5oT3PwDtW1geSfYtfqX+nhrJ2jQ="
         }
       ]
     },
@@ -1488,7 +1488,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 14 Aug 2025 09:00:57 GMT"
+          "Value": "Thu, 14 Aug 2025 11:17:31 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1525,7 +1525,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 14 Aug 2025 09:00:57 GMT"
+          "Value": "Thu, 14 Aug 2025 11:17:31 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1570,7 +1570,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 14 Aug 2025 09:00:57 GMT"
+          "Value": "Thu, 14 Aug 2025 11:17:31 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1615,7 +1615,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 14 Aug 2025 09:00:57 GMT"
+          "Value": "Thu, 14 Aug 2025 11:17:31 GMT"
         },
         {
           "Name": "Cache-Control",

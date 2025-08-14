@@ -64,7 +64,7 @@
             <label class="form-label text-muted">Department</label>
             <div class="info-value">
                 <i class="fas fa-building text-info me-2"></i>
-                <span class="badge bg-info">@Html.DisplayFor(model => model.Department!.Name)</span>
+                <span class="badge bg-info">@(Model.Department?.Name ?? "No Department")</span>
             </div>
         </div>
     </div>
