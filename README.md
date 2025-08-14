@@ -2,7 +2,7 @@
 
 A modern Employee Management System built with ASP.NET Core 8.0, featuring a clean layered architecture, comprehensive CRUD operations, and a responsive web interface.
 
-![EMS Dashboard Preview](https://i.imgur.com/example.png)
+<img width="1835" height="870" alt="image" src="https://github.com/user-attachments/assets/0199f2f1-ed24-4ea5-956f-71857c347ca8" />
 
 *Modern dashboard with real-time statistics, employee management, and department overview*
 
