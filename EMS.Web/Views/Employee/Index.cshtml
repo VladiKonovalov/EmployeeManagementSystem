@@ -1,0 +1,177 @@
+@model EMS.Application.PagedResult<EMS.Domain.Models.Employee>
+
+@{
+    ViewData["Title"] = "Employees";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">
+            <i class="fas fa-users"></i> Employees
+        </h3>
+        <div class="card-tools">
+            <a asp-action="Create" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Create New
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle"></i>
+                @TempData["SuccessMessage"]
+            </div>
+        }
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-circle"></i>
+                @TempData["ErrorMessage"]
+            </div>
+        }
+
+        <!-- Search and Filter Form -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <form method="get" class="row g-3">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="form-label">Search</label>
+                            <input type="text" name="search" class="form-control" placeholder="Search by name or email..." value="@ViewBag.Search" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-label">Department</label>
+                            <select name="departmentId" class="form-control">
+                                <option value="">All Departments</option>
+                                @foreach (var item in ViewBag.Departments)
+                                {
+                                    var selected = ViewBag.DepartmentId?.ToString() == item.Value;
+                                    <option value="@item.Value" selected="@selected">@item.Text</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-label">Sort By</label>
+                            <select name="sortBy" class="form-control">
+                                <option value="LastName" selected="@(ViewBag.SortBy == "LastName")">Last Name</option>
+                                <option value="FirstName" selected="@(ViewBag.SortBy == "FirstName")">First Name</option>
+                                <option value="Email" selected="@(ViewBag.SortBy == "Email")">Email</option>
+                                <option value="HireDate" selected="@(ViewBag.SortBy == "HireDate")">Hire Date</option>
+                                <option value="Salary" selected="@(ViewBag.SortBy == "Salary")">Salary</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label class="form-label">&nbsp;</label>
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="fas fa-search"></i> Search
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Employees Table -->
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Department</th>
+                        <th>Hire Date</th>
+                        <th>Salary</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td><strong>@item.FirstName @item.LastName</strong></td>
+                            <td>@item.Email</td>
+                            <td><span class="badge bg-info">@item.Department?.Name</span></td>
+                            <td>@item.HireDate.ToShortDateString()</td>
+                            <td><strong>@item.Salary.ToString("C")</strong></td>
+                            <td>
+                                <div class="btn-group">
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">
+                                        <i class="fas fa-eye"></i> Details
+                                    </a>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        @if (Model.TotalCount > 0)
+        {
+            <div class="d-flex justify-content-between align-items-center mt-4">
+                <div>
+                    <p class="text-muted">
+                        Showing @(((ViewBag.Page - 1) * ViewBag.PageSize) + 1) to 
+                        @Math.Min(ViewBag.Page * ViewBag.PageSize, Model.TotalCount) of @Model.TotalCount employees
+                    </p>
+                </div>
+                <nav>
+                    <ul class="pagination">
+                        @{
+                            var totalPages = (int)Math.Ceiling((double)Model.TotalCount / ViewBag.PageSize);
+                            var currentPage = ViewBag.Page;
+                        }
+                        
+                        @if (currentPage > 1)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="@Url.Action("Index", new { page = currentPage - 1, search = ViewBag.Search, departmentId = ViewBag.DepartmentId, sortBy = ViewBag.SortBy, sortDir = ViewBag.SortDir })">
+                                    <i class="fas fa-chevron-left"></i> Previous
+                                </a>
+                            </li>
+                        }
+                        
+                        @for (int i = Math.Max(1, currentPage - 2); i <= Math.Min(totalPages, currentPage + 2); i++)
+                        {
+                            <li class="page-item @(i == currentPage ? "active" : "")">
+                                <a class="page-link" href="@Url.Action("Index", new { page = i, search = ViewBag.Search, departmentId = ViewBag.DepartmentId, sortBy = ViewBag.SortBy, sortDir = ViewBag.SortDir })">
+                                    @i
+                                </a>
+                            </li>
+                        }
+                        
+                        @if (currentPage < totalPages)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="@Url.Action("Index", new { page = currentPage + 1, search = ViewBag.Search, departmentId = ViewBag.DepartmentId, sortBy = ViewBag.SortBy, sortDir = ViewBag.SortDir })">
+                                    Next <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle"></i> No employees found matching your criteria.
+            </div>
+        }
+    </div>
+</div>

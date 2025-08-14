@@ -1,0 +1,106 @@
+@model EMS.Web.Models.ErrorViewModel
+
+@{
+    ViewData["Title"] = "Error";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card">
+            <div class="card-header bg-danger text-white text-center">
+                <h2 class="mb-0">
+                    <i class="fas fa-exclamation-triangle"></i> Oops! Something went wrong
+                </h2>
+            </div>
+            <div class="card-body text-center">
+                <div class="mb-4">
+                    <i class="fas fa-sad-tear fa-5x text-muted"></i>
+                </div>
+                
+                <h4 class="text-muted mb-3">We're sorry, but an error occurred while processing your request.</h4>
+                
+                <div class="alert alert-info">
+                    <p class="mb-2"><strong>What you can do:</strong></p>
+                    <ul class="list-unstyled mb-0">
+                        <li><i class="fas fa-arrow-right text-primary"></i> Check the URL and try again</li>
+                        <li><i class="fas fa-arrow-right text-primary"></i> Go back to the previous page</li>
+                        <li><i class="fas fa-arrow-right text-primary"></i> Return to the dashboard</li>
+                        <li><i class="fas fa-arrow-right text-primary"></i> Contact support if the problem persists</li>
+                    </ul>
+                </div>
+
+                @if (Model.ShowRequestId)
+                {
+                    <div class="alert alert-secondary">
+                        <small>
+                            <strong>Request ID:</strong> <code>@Model.RequestId</code>
+                        </small>
+                    </div>
+                }
+
+                <div class="mt-4">
+                    <div class="d-flex gap-2 justify-content-center">
+                        <button type="button" class="btn btn-secondary" onclick="history.back()">
+                            <i class="fas fa-arrow-left"></i> Go Back
+                        </button>
+                        <a href="@Url.Action("Index", "Dashboard")" class="btn btn-primary">
+                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                        </a>
+                        <a href="@Url.Action("Index", "Home")" class="btn btn-info">
+                            <i class="fas fa-home"></i> Home
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <p class="text-muted small">
+                        If you continue to experience issues, please contact our support team with the Request ID above.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border: none;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-lg);
+    }
+    
+    .card-header {
+        border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
+        border-bottom: none;
+        background: linear-gradient(135deg, var(--danger-color) 0%, #dc2626 100%) !important;
+    }
+    
+    .alert {
+        border-radius: var(--border-radius);
+        border: none;
+    }
+    
+    .alert-info {
+        background-color: #eff6ff;
+        color: #1e40af;
+        border-left: 4px solid var(--info-color);
+    }
+    
+    .alert-secondary {
+        background-color: #f8fafc;
+        color: var(--text-secondary);
+        border-left: 4px solid var(--secondary-color);
+    }
+    
+    .fas.fa-arrow-right {
+        margin-right: 8px;
+    }
+    
+    code {
+        background-color: #f1f5f9;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.9em;
+        color: var(--text-primary);
+    }
+</style>

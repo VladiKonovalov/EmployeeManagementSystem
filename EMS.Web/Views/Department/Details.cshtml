@@ -1,0 +1,87 @@
+@model EMS.Domain.Models.Department
+
+@{
+    ViewData["Title"] = "Department Details";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Department Details</h3>
+                    <div class="card-tools">
+                        <a asp-action="Index" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Back to List
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <dl class="row">
+                                <dt class="col-sm-4">Name</dt>
+                                <dd class="col-sm-8">@Model.Name</dd>
+
+                                <dt class="col-sm-4">Department ID</dt>
+                                <dd class="col-sm-8">@Model.Id</dd>
+
+                                <dt class="col-sm-4">Employee Count</dt>
+                                <dd class="col-sm-8">@Model.Employees.Count</dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                    @if (Model.Employees.Any())
+                    {
+                        <div class="mt-4">
+                            <h4>Employees in this Department</h4>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Hire Date</th>
+                                            <th>Salary</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var employee in Model.Employees)
+                                        {
+                                            <tr>
+                                                <td>@employee.FirstName @employee.LastName</td>
+                                                <td>@employee.Email</td>
+                                                <td>@employee.HireDate.ToShortDateString()</td>
+                                                <td>@employee.Salary.ToString("C")</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="mt-4">
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle"></i> No employees are currently assigned to this department.
+                            </div>
+                        </div>
+                    }
+
+                    <div class="mt-4">
+                        <div class="btn-group" role="group">
+                            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">
+                                <i class="fas fa-trash"></i> Delete
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
