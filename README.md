@@ -2,12 +2,17 @@
 
 A modern Employee Management System built with ASP.NET Core 8.0, featuring a clean layered architecture, comprehensive CRUD operations, and a responsive web interface.
 
+
+small preview of the system : https://youtu.be/0ZGwOiE8FCU
+
+
+screenshots from the system:
+
 <img width="1835" height="870" alt="image" src="https://github.com/user-attachments/assets/0199f2f1-ed24-4ea5-956f-71857c347ca8" />
 <img width="1907" height="735" alt="image" src="https://github.com/user-attachments/assets/ffa14305-8e29-482b-bca3-249a8c23fd51" />
 
 <img width="1901" height="853" alt="image" src="https://github.com/user-attachments/assets/7af22f1a-1ed2-42c0-869f-773e92b07faa" />
 
-small preview of the system : https://youtu.be/0ZGwOiE8FCU
 
 *Modern dashboard with real-time statistics, employee management, and department overview*
 
